@@ -37,7 +37,7 @@ export default function Button({
   }
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    soundManager.playClick()
+    soundManager.playWandSwish()
     if (props.onClick) {
       props.onClick(e)
     }

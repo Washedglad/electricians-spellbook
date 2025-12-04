@@ -49,8 +49,11 @@ export default function ScrollOfCodesPage() {
           <ScrollText className="mr-3 h-10 w-10" />
           Scroll of Codes
         </h1>
-        <p className="text-parchment/70 mt-2 font-script">
+        <p className="text-amber-200/90 mt-2 font-script text-lg italic">
           The ancient texts of the National Electrical Code
+        </p>
+        <p className="text-parchment/60 mt-1 text-sm">
+          📜 "When in doubt, go to the library." — Hermione Granger
         </p>
       </div>
 
@@ -159,60 +162,232 @@ export default function ScrollOfCodesPage() {
       )}
 
       {/* Quick Reference Tables */}
-      <Card>
-        <h2 className="text-2xl font-display font-bold text-accent-gold mb-4">
-          Quick Reference: Common Wire Ampacities (75°C)
-        </h2>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full text-parchment">
-            <thead>
-              <tr className="border-b border-accent-gold/30">
-                <th className="text-left py-3 px-4 font-display">Wire Size (AWG)</th>
-                <th className="text-left py-3 px-4 font-display">Copper Ampacity</th>
-                <th className="text-left py-3 px-4 font-display">Common Uses</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-accent-gold/10">
-                <td className="py-3 px-4 font-bold">14</td>
-                <td className="py-3 px-4">20A</td>
-                <td className="py-3 px-4">15A branch circuits, lighting</td>
-              </tr>
-              <tr className="border-b border-accent-gold/10">
-                <td className="py-3 px-4 font-bold">12</td>
-                <td className="py-3 px-4">25A</td>
-                <td className="py-3 px-4">20A branch circuits, receptacles</td>
-              </tr>
-              <tr className="border-b border-accent-gold/10">
-                <td className="py-3 px-4 font-bold">10</td>
-                <td className="py-3 px-4">35A</td>
-                <td className="py-3 px-4">30A circuits, water heaters</td>
-              </tr>
-              <tr className="border-b border-accent-gold/10">
-                <td className="py-3 px-4 font-bold">8</td>
-                <td className="py-3 px-4">50A</td>
-                <td className="py-3 px-4">40A circuits, ranges</td>
-              </tr>
-              <tr className="border-b border-accent-gold/10">
-                <td className="py-3 px-4 font-bold">6</td>
-                <td className="py-3 px-4">65A</td>
-                <td className="py-3 px-4">50A-60A circuits, larger appliances</td>
-              </tr>
-              <tr className="border-b border-accent-gold/10">
-                <td className="py-3 px-4 font-bold">4</td>
-                <td className="py-3 px-4">85A</td>
-                <td className="py-3 px-4">70A-80A circuits</td>
-              </tr>
-              <tr>
-                <td className="py-3 px-4 font-bold">2</td>
-                <td className="py-3 px-4">115A</td>
-                <td className="py-3 px-4">100A sub-panels</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </Card>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <h2 className="text-2xl font-display font-bold text-accent-gold mb-4">
+            ⚡ Wire Ampacities (75°C Copper)
+          </h2>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full text-parchment">
+              <thead>
+                <tr className="border-b border-accent-gold/30">
+                  <th className="text-left py-3 px-4 font-display">AWG</th>
+                  <th className="text-left py-3 px-4 font-display">Amps</th>
+                  <th className="text-left py-3 px-4 font-display">Max Breaker</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">14</td>
+                  <td className="py-3 px-4">20A</td>
+                  <td className="py-3 px-4">15A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">12</td>
+                  <td className="py-3 px-4">25A</td>
+                  <td className="py-3 px-4">20A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">10</td>
+                  <td className="py-3 px-4">35A</td>
+                  <td className="py-3 px-4">30A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">8</td>
+                  <td className="py-3 px-4">50A</td>
+                  <td className="py-3 px-4">40-50A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">6</td>
+                  <td className="py-3 px-4">65A</td>
+                  <td className="py-3 px-4">60A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">4</td>
+                  <td className="py-3 px-4">85A</td>
+                  <td className="py-3 px-4">70-80A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">3</td>
+                  <td className="py-3 px-4">100A</td>
+                  <td className="py-3 px-4">90-100A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">2</td>
+                  <td className="py-3 px-4">115A</td>
+                  <td className="py-3 px-4">100-110A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">1</td>
+                  <td className="py-3 px-4">130A</td>
+                  <td className="py-3 px-4">125A</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold">1/0</td>
+                  <td className="py-3 px-4">150A</td>
+                  <td className="py-3 px-4">150A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card>
+          <h2 className="text-2xl font-display font-bold text-accent-gold mb-4">
+            📦 Box Fill (Cubic Inches)
+          </h2>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full text-parchment">
+              <thead>
+                <tr className="border-b border-accent-gold/30">
+                  <th className="text-left py-3 px-4 font-display">Wire Size</th>
+                  <th className="text-left py-3 px-4 font-display">Cu. In.</th>
+                  <th className="text-left py-3 px-4 font-display">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">14 AWG</td>
+                  <td className="py-3 px-4">2.0</td>
+                  <td className="py-3 px-4">Most common</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">12 AWG</td>
+                  <td className="py-3 px-4">2.25</td>
+                  <td className="py-3 px-4">20A circuits</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">10 AWG</td>
+                  <td className="py-3 px-4">2.5</td>
+                  <td className="py-3 px-4">30A circuits</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">8 AWG</td>
+                  <td className="py-3 px-4">3.0</td>
+                  <td className="py-3 px-4">Larger loads</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">6 AWG</td>
+                  <td className="py-3 px-4">5.0</td>
+                  <td className="py-3 px-4">Heavy duty</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">Device</td>
+                  <td className="py-3 px-4">2×</td>
+                  <td className="py-3 px-4">Count as 2</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">All Grounds</td>
+                  <td className="py-3 px-4">1×</td>
+                  <td className="py-3 px-4">Count as 1</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold">Clamps</td>
+                  <td className="py-3 px-4">1×</td>
+                  <td className="py-3 px-4">Count as 1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card>
+          <h2 className="text-2xl font-display font-bold text-accent-gold mb-4">
+            🔌 Grounding Conductor Sizes
+          </h2>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full text-parchment">
+              <thead>
+                <tr className="border-b border-accent-gold/30">
+                  <th className="text-left py-3 px-4 font-display">Breaker</th>
+                  <th className="text-left py-3 px-4 font-display">Ground Wire</th>
+                  <th className="text-left py-3 px-4 font-display">Application</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">15A-20A</td>
+                  <td className="py-3 px-4">14 AWG</td>
+                  <td className="py-3 px-4">Branch circuits</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">25A-30A</td>
+                  <td className="py-3 px-4">10 AWG</td>
+                  <td className="py-3 px-4">Water heaters</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">40A-60A</td>
+                  <td className="py-3 px-4">10 AWG</td>
+                  <td className="py-3 px-4">Large appliances</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">70A-100A</td>
+                  <td className="py-3 px-4">8 AWG</td>
+                  <td className="py-3 px-4">Sub-panels</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4 font-bold">110A-200A</td>
+                  <td className="py-3 px-4">6 AWG</td>
+                  <td className="py-3 px-4">Main services</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 font-bold">225A-400A</td>
+                  <td className="py-3 px-4">3 AWG</td>
+                  <td className="py-3 px-4">Large services</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+
+        <Card>
+          <h2 className="text-2xl font-display font-bold text-accent-gold mb-4">
+            📏 Burial Depth Requirements
+          </h2>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full text-parchment">
+              <thead>
+                <tr className="border-b border-accent-gold/30">
+                  <th className="text-left py-3 px-4 font-display">Method</th>
+                  <th className="text-left py-3 px-4 font-display">Depth</th>
+                  <th className="text-left py-3 px-4 font-display">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4">Rigid/IMC</td>
+                  <td className="py-3 px-4 font-bold">6"</td>
+                  <td className="py-3 px-4">Under concrete</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4">GFCI 120V</td>
+                  <td className="py-3 px-4 font-bold">12"</td>
+                  <td className="py-3 px-4">Residential ≤20A</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4">EMT</td>
+                  <td className="py-3 px-4 font-bold">18"</td>
+                  <td className="py-3 px-4">Not under roads</td>
+                </tr>
+                <tr className="border-b border-accent-gold/10">
+                  <td className="py-3 px-4">Direct Burial</td>
+                  <td className="py-3 px-4 font-bold">24"</td>
+                  <td className="py-3 px-4">UF cable</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4">Under Roads</td>
+                  <td className="py-3 px-4 font-bold">24"</td>
+                  <td className="py-3 px-4">All methods</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      </div>
     </motion.div>
   )
 }
