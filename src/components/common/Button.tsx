@@ -1,6 +1,7 @@
 import { ReactNode, ButtonHTMLAttributes } from 'react'
 import { motion } from 'framer-motion'
 import { Loader2 } from 'lucide-react'
+import { soundManager } from '../../utils/sounds'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
@@ -35,12 +36,20 @@ export default function Button({
     lg: 'px-8 py-4 text-lg',
   }
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    soundManager.playClick()
+    props.onClick?.(e)
+  }
+
   return (
     <motion.button
+      whileHover={{ scale: disabled || loading ? 1 : 1.05 }}
       whileTap={{ scale: disabled || loading ? 1 : 0.95 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       disabled={disabled || loading}
       type={props.type || 'button'}
+      {...props}
+      onClick={handleClick}
     >
       {loading ? (
         <>

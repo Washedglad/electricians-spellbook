@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Layout from './components/Layout'
+import MagicalParticles from './components/common/MagicalParticles'
 import HomePage from './pages/HomePage'
 import GrimoirePage from './pages/GrimoirePage'
 import SpellCalculatorPage from './pages/SpellCalculatorPage'
@@ -12,9 +13,11 @@ import QuestDetailPage from './pages/QuestDetailPage'
 
 function App() {
   return (
-    <Layout>
-      <AnimatePresence mode="wait">
-        <Routes>
+    <>
+      <MagicalParticles />
+      <Layout>
+        <AnimatePresence mode="wait">
+          <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/grimoire" element={<GrimoirePage />} />
           <Route path="/grimoire/:id" element={<QuestDetailPage />} />
@@ -23,9 +26,10 @@ function App() {
           <Route path="/codes" element={<ScrollOfCodesPage />} />
           <Route path="/time-turner" element={<TimeTurnerPage />} />
           <Route path="/map" element={<MapOfMischiefPage />} />
-        </Routes>
-      </AnimatePresence>
-    </Layout>
+          </Routes>
+        </AnimatePresence>
+      </Layout>
+    </>
   )
 }
 

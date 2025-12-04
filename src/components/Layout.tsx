@@ -1,6 +1,7 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { soundManager } from '../utils/sounds'
 import {
   BookOpen,
   Sparkles,
@@ -19,7 +20,13 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [soundEnabled, setSoundEnabled] = useState(true)
   const location = useLocation()
+
+  // Play transition sound on route change
+  useEffect(() => {
+    soundManager.playTransition()
+  }, [location.pathname])
 
   const navigation = [
     { name: 'Home', href: '/', icon: Zap },
@@ -90,6 +97,18 @@ export default function Layout({ children }: LayoutProps) {
                 )
               })}
             </nav>
+
+            {/* Sound toggle */}
+            <button
+              onClick={() => {
+                const enabled = soundManager.toggle()
+                setSoundEnabled(enabled)
+              }}
+              className="hidden md:block p-2 rounded-lg text-parchment hover:bg-primary-dark/50 transition-colors"
+              title={soundEnabled ? 'Disable sounds' : 'Enable sounds'}
+            >
+              <span className="text-xl">{soundEnabled ? '🔊' : '🔇'}</span>
+            </button>
 
             {/* Mobile menu button */}
             <button

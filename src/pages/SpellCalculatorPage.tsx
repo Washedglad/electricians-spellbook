@@ -18,7 +18,24 @@ import {
   calculateBoxFill,
   calculateConduitFill,
 } from '../utils/calculations'
+import {
+  calculateDataCableLength,
+  calculatePoE,
+  calculateLowVoltagePower,
+  calculateHVACWiring,
+  calculatePLCIO,
+  calculateSecurityWiring,
+} from '../utils/lowVoltageCalculations'
 import { CalculatorResult } from '../types'
+import { soundManager } from '../utils/sounds'
+import {
+  DataCableCalculator,
+  PoECalculator,
+  LowVoltagePowerCalculator,
+  HVACWiringCalculator,
+  PLCIOCalculator,
+  SecurityWiringCalculator,
+} from './LowVoltageCalculators'
 
 type CalculatorType =
   | 'ohms-law'
@@ -27,18 +44,30 @@ type CalculatorType =
   | 'breaker-size'
   | 'box-fill'
   | 'conduit-fill'
+  | 'data-cable'
+  | 'poe'
+  | 'low-voltage'
+  | 'hvac-wiring'
+  | 'plc-io'
+  | 'security-wiring'
 
 export default function SpellCalculatorPage() {
   const [activeCalculator, setActiveCalculator] = useState<CalculatorType>('ohms-law')
   const [result, setResult] = useState<CalculatorResult | null>(null)
 
   const calculators = [
-    { id: 'ohms-law', name: "Ohm's Law", icon: Zap },
-    { id: 'wire-size', name: 'Wire Sizing', icon: Calculator },
-    { id: 'voltage-drop', name: 'Voltage Drop', icon: Zap },
-    { id: 'breaker-size', name: 'Breaker Sizing', icon: AlertTriangle },
-    { id: 'box-fill', name: 'Box Fill', icon: Calculator },
-    { id: 'conduit-fill', name: 'Conduit Fill', icon: Calculator },
+    { id: 'ohms-law', name: "Ohm's Law", icon: Zap, category: 'Power' },
+    { id: 'wire-size', name: 'Wire Sizing', icon: Calculator, category: 'Power' },
+    { id: 'voltage-drop', name: 'Voltage Drop', icon: Zap, category: 'Power' },
+    { id: 'breaker-size', name: 'Breaker Sizing', icon: AlertTriangle, category: 'Power' },
+    { id: 'box-fill', name: 'Box Fill', icon: Calculator, category: 'Power' },
+    { id: 'conduit-fill', name: 'Conduit Fill', icon: Calculator, category: 'Power' },
+    { id: 'data-cable', name: 'Data Cable', icon: Sparkles, category: 'Low Voltage' },
+    { id: 'poe', name: 'PoE Power', icon: Lightbulb, category: 'Low Voltage' },
+    { id: 'low-voltage', name: 'Low Voltage DC', icon: Calculator, category: 'Low Voltage' },
+    { id: 'hvac-wiring', name: 'HVAC Controls', icon: Sparkles, category: 'Controls' },
+    { id: 'plc-io', name: 'PLC I/O', icon: Calculator, category: 'Automation' },
+    { id: 'security-wiring', name: 'Security Systems', icon: Lightbulb, category: 'Low Voltage' },
   ]
 
   return (
@@ -64,29 +93,95 @@ export default function SpellCalculatorPage() {
         <h2 className="text-xl font-display font-bold text-gray-800 mb-4">
           Choose Your Spell
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {calculators.map((calc) => {
-            const Icon = calc.icon
-            return (
-              <button
-                key={calc.id}
-                onClick={() => {
-                  setActiveCalculator(calc.id as CalculatorType)
-                  setResult(null)
-                }}
-                className={`
-                  p-4 rounded-lg font-display text-sm transition-all
-                  ${activeCalculator === calc.id
-                    ? 'bg-gradient-to-br from-amber-600 to-amber-800 text-white shadow-lg scale-105'
-                    : 'bg-amber-50 text-gray-700 hover:bg-amber-100 border border-amber-200'
-                  }
-                `}
-              >
-                <Icon className="h-6 w-6 mx-auto mb-2" />
-                {calc.name}
-              </button>
-            )
-          })}
+        
+        {/* Power Calculations */}
+        <div className="mb-6">
+          <h3 className="text-sm font-display font-semibold text-gray-700 mb-3">⚡ Power Circuits</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {calculators.filter(c => c.category === 'Power').map((calc) => {
+              const Icon = calc.icon
+              return (
+                <button
+                  key={calc.id}
+                  onClick={() => {
+                    setActiveCalculator(calc.id as CalculatorType)
+                    setResult(null)
+                    soundManager.playClick()
+                  }}
+                  className={`
+                    p-4 rounded-lg font-display text-sm transition-all
+                    ${activeCalculator === calc.id
+                      ? 'bg-gradient-to-br from-amber-600 to-amber-800 text-white shadow-lg scale-105'
+                      : 'bg-amber-50 text-gray-700 hover:bg-amber-100 border border-amber-200'
+                    }
+                  `}
+                >
+                  <Icon className="h-6 w-6 mx-auto mb-2" />
+                  {calc.name}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Low Voltage & Data */}
+        <div className="mb-6">
+          <h3 className="text-sm font-display font-semibold text-gray-700 mb-3">📡 Low Voltage & Data</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {calculators.filter(c => c.category === 'Low Voltage').map((calc) => {
+              const Icon = calc.icon
+              return (
+                <button
+                  key={calc.id}
+                  onClick={() => {
+                    setActiveCalculator(calc.id as CalculatorType)
+                    setResult(null)
+                    soundManager.playClick()
+                  }}
+                  className={`
+                    p-4 rounded-lg font-display text-sm transition-all
+                    ${activeCalculator === calc.id
+                      ? 'bg-gradient-to-br from-blue-600 to-blue-800 text-white shadow-lg scale-105'
+                      : 'bg-blue-50 text-gray-700 hover:bg-blue-100 border border-blue-200'
+                    }
+                  `}
+                >
+                  <Icon className="h-6 w-6 mx-auto mb-2" />
+                  {calc.name}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Controls & Automation */}
+        <div>
+          <h3 className="text-sm font-display font-semibold text-gray-700 mb-3">🤖 Controls & Automation</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {calculators.filter(c => c.category === 'Controls' || c.category === 'Automation').map((calc) => {
+              const Icon = calc.icon
+              return (
+                <button
+                  key={calc.id}
+                  onClick={() => {
+                    setActiveCalculator(calc.id as CalculatorType)
+                    setResult(null)
+                    soundManager.playClick()
+                  }}
+                  className={`
+                    p-4 rounded-lg font-display text-sm transition-all
+                    ${activeCalculator === calc.id
+                      ? 'bg-gradient-to-br from-purple-600 to-purple-800 text-white shadow-lg scale-105'
+                      : 'bg-purple-50 text-gray-700 hover:bg-purple-100 border border-purple-200'
+                    }
+                  `}
+                >
+                  <Icon className="h-6 w-6 mx-auto mb-2" />
+                  {calc.name}
+                </button>
+              )
+            })}
+          </div>
         </div>
       </Card>
 
@@ -99,6 +194,12 @@ export default function SpellCalculatorPage() {
           {activeCalculator === 'breaker-size' && <BreakerSizeCalculator onResult={setResult} />}
           {activeCalculator === 'box-fill' && <BoxFillCalculator onResult={setResult} />}
           {activeCalculator === 'conduit-fill' && <ConduitFillCalculator onResult={setResult} />}
+          {activeCalculator === 'data-cable' && <DataCableCalculator onResult={setResult} />}
+          {activeCalculator === 'poe' && <PoECalculator onResult={setResult} />}
+          {activeCalculator === 'low-voltage' && <LowVoltagePowerCalculator onResult={setResult} />}
+          {activeCalculator === 'hvac-wiring' && <HVACWiringCalculator onResult={setResult} />}
+          {activeCalculator === 'plc-io' && <PLCIOCalculator onResult={setResult} />}
+          {activeCalculator === 'security-wiring' && <SecurityWiringCalculator onResult={setResult} />}
         </Card>
 
         {/* Results */}
