@@ -4,7 +4,6 @@ import {
   Package,
   Plus,
   Minus,
-  Edit3,
   Trash2,
   AlertTriangle,
   Search,

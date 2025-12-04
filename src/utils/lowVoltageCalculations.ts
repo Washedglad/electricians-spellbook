@@ -47,7 +47,7 @@ export function calculateDataCableLength(
   }
 
   return {
-    inputs: { dataRate, cableType, environmentalFactors },
+    inputs: { dataRate, cableType: cableType as any, environmentalFactors: environmentalFactors as any } as Record<string, number>,
     outputs: {
       maxLength: `${maxLength}m (${(maxLength * 3.28084).toFixed(0)}ft)`,
       maxSpeed: `${maxSpeed >= 1000 ? maxSpeed / 1000 : maxSpeed} ${maxSpeed >= 1000 ? 'Gbps' : 'Mbps'}`,
@@ -105,7 +105,7 @@ export function calculatePoE(
   }
 
   return {
-    inputs: { standard, deviceCount, devicePower },
+    inputs: { standard: standard as any, deviceCount, devicePower } as Record<string, number>,
     outputs: {
       totalPower: `${totalPower.toFixed(1)}W`,
       switchBudget: `${switchPowerBudget.toFixed(1)}W`,
@@ -210,7 +210,7 @@ export function calculateHVACWiring(
   }
 
   return {
-    inputs: { wireCount, maxDistance, voltage, application: applicationTy },
+    inputs: { wireCount, maxDistance, voltage, application: applicationTy as any } as Record<string, number>,
     outputs: {
       recommendedCable,
       voltage: `${voltage}V`,
@@ -339,7 +339,7 @@ export function calculateSecurityWiring(
   }
 
   return {
-    inputs: { system, deviceCount, avgDistance, powerMethod },
+    inputs: { system: system as any, deviceCount, avgDistance, powerMethod: powerMethod as any } as Record<string, number>,
     outputs: {
       recommendedCable: cableType,
       estimatedLength: `${estimatedLength.toFixed(0)} feet`,

@@ -9,7 +9,7 @@ import {
   Calendar,
   CheckCircle2,
   Clock,
-  Flask,
+  Beaker,
 } from 'lucide-react'
 import Card from '../components/common/Card'
 import Button from '../components/common/Button'
@@ -69,7 +69,7 @@ export default function GrimoirePage() {
       case 'Completed':
         return <CheckCircle2 className="h-5 w-5 text-green-400" />
       case 'Brewing':
-        return <Flask className="h-5 w-5 text-purple-400" />
+        return <Beaker className="h-5 w-5 text-purple-400" />
     }
   }
 
@@ -163,7 +163,7 @@ export default function GrimoirePage() {
               </div>
               <div className="text-sm text-gray-600 font-display">In Planning</div>
             </div>
-            <Flask className="h-10 w-10 text-purple-600" />
+            <Beaker className="h-10 w-10 text-purple-600" />
           </div>
         </Card>
         

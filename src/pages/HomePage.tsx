@@ -12,7 +12,6 @@ import {
   AlertTriangle,
 } from 'lucide-react'
 import Card from '../components/common/Card'
-import Button from '../components/common/Button'
 import { useStore } from '../store/useStore'
 
 export default function HomePage() {

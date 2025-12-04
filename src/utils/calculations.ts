@@ -298,7 +298,7 @@ export function calculateBoxFill(
   }
 
   return {
-    inputs: { devices, clamps, groundWires },
+    inputs: { devices, clamps, groundWires } as Record<string, number>,
     outputs: {
       requiredVolume: totalVolume.toFixed(1) + ' cu.in.',
       recommendedBox: recommendedBox.name,

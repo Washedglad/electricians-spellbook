@@ -37,10 +37,10 @@ export default function Button({
 
   return (
     <motion.button
-      whileTap={{ scale: disabled ? 1 : 0.95 }}
+      whileTap={{ scale: disabled || loading ? 1 : 0.95 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       disabled={disabled || loading}
-      {...props}
+      type={props.type || 'button'}
     >
       {loading ? (
         <>
