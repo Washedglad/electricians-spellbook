@@ -70,8 +70,9 @@ The app features a dark, mystical Harry Potter aesthetic:
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 16+ and npm/yarn
+- Node.js 18+ and npm/yarn
 - Modern web browser
+- Git (for version control)
 
 ### Installation
 
@@ -97,6 +98,23 @@ npm run build
 ```
 
 The production-ready files will be in the `dist` folder.
+
+## 🌐 Deploy to Vercel
+
+### Quick Deploy (One Command)
+```bash
+npm install -g vercel
+vercel
+```
+
+### Or Deploy via Vercel Website
+1. Push code to GitHub (see `GIT_SETUP_GUIDE.md`)
+2. Go to https://vercel.com
+3. Import your GitHub repository
+4. Click "Deploy"
+5. Done! ✨
+
+**See `VERCEL_DEPLOY.md` for complete deployment guide.**
 
 ## 🛠️ Tech Stack
 
