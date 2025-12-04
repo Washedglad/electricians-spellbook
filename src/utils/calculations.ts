@@ -314,7 +314,7 @@ export function calculateBoxFill(
 export function calculateConduitFill(
   conductorSize: string,
   conductorCount: number,
-  conduitType: 'EMT' | 'PVC' | 'IMC' | 'Rigid' = 'EMT'
+  _conduitType: 'EMT' | 'PVC' | 'IMC' | 'Rigid' = 'EMT'
 ): CalculatorResult {
   // Simplified conduit fill - actual NEC tables are more complex
   const maxFillPercentages = {
