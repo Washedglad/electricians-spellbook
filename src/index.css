@@ -6,39 +6,43 @@
   /* Dark Theme (Nox) - Default */
   :root,
   .theme-dark {
-    --color-primary: #2D1B4E;
-    --color-primary-dark: #1a1a2e;
-    --color-secondary-green: #0f4c3a;
-    --color-secondary-burgundy: #5c1a1a;
-    --color-accent-gold: #d4af37;
-    --color-parchment: #f4f1de;
-    --color-bg-page: #1a1a2e;
-    --color-text-main: #f4f1de;
-    --color-bg-card: rgba(45, 27, 78, 0.6);
-    --color-border: rgba(212, 175, 55, 0.2);
+    --color-primary: 45 27 78;
+    --color-primary-dark: 26 26 46;
+    --color-secondary-green: 15 76 58;
+    --color-secondary-burgundy: 92 26 26;
+    --color-accent-gold: 212 175 55;
+    --color-parchment: 244 241 222;
+    --color-bg-page: 26 26 46;
+    --color-text-main: 244 241 222;
+    --color-card: 45 27 78;
+    --card-opacity: 0.6;
+    --color-border: 212 175 55;
+    --border-opacity: 0.2;
   }
 
   /* Light Theme (Lumos) */
   .theme-light {
-    --color-primary: #8b7355;
-    --color-primary-dark: #6b5943;
-    --color-secondary-green: #5a7c6c;
-    --color-secondary-burgundy: #8b5a5a;
-    --color-accent-gold: #8b6914;
-    --color-parchment: #2D1B4E;
-    --color-bg-page: #f4f1de;
-    --color-text-main: #2D1B4E;
-    --color-bg-card: rgba(232, 220, 196, 0.9);
-    --color-border: rgba(139, 105, 20, 0.3);
+    --color-primary: 139 115 85;
+    --color-primary-dark: 107 89 67;
+    --color-secondary-green: 90 124 108;
+    --color-secondary-burgundy: 139 90 90;
+    --color-accent-gold: 139 105 20;
+    --color-parchment: 45 27 78;
+    --color-bg-page: 244 241 222;
+    --color-text-main: 45 27 78;
+    --color-card: 232 220 196;
+    --card-opacity: 0.95;
+    --color-border: 139 105 20;
+    --border-opacity: 0.3;
   }
 
   * {
-    border-color: rgba(212, 175, 55, 0.2);
+    border-color: rgb(var(--color-border) / var(--border-opacity));
   }
   
   body {
-    background-color: var(--color-bg-page);
-    color: var(--color-text-main);
+    background-color: rgb(var(--color-bg-page));
+    color: rgb(var(--color-text-main));
     @apply font-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
@@ -63,7 +67,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background-color: var(--color-primary-dark);
+    background-color: rgb(var(--color-primary-dark));
   }
 
   ::-webkit-scrollbar-thumb {
@@ -87,15 +91,15 @@
   }
 
   .dark-card {
-    background: var(--color-bg-card);
+    background-color: rgb(var(--color-card) / var(--card-opacity));
     @apply rounded-lg shadow-magical p-6 backdrop-blur-sm relative overflow-hidden;
-    border: 1px solid var(--color-border);
+    border: 1px solid rgb(var(--color-border) / var(--border-opacity));
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
   .theme-light .dark-card {
-    background: rgba(255, 251, 245, 0.95);
-    border: 2px solid rgba(139, 105, 20, 0.3);
+    background-color: rgb(var(--color-card) / var(--card-opacity));
+    border: 2px solid rgb(var(--color-border) / var(--border-opacity));
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
