@@ -205,7 +205,7 @@ export function calculateBreakerSize(
                             breakerSize <= 70 ? '4 AWG' : '2 AWG or larger'
 
   return {
-    inputs: { loadAmperage, continuous: loadType === 'continuous', motorLoad },
+    inputs: { loadAmperage } as Record<string, number>,
     outputs: {
       breakerSize: breakerSize + 'A',
       requiredAmpacity: requiredAmpacity.toFixed(1) + 'A',
@@ -351,7 +351,7 @@ export function calculateConduitFill(
   }
 
   return {
-    inputs: { conductorSize, conductorCount, conduitType },
+    inputs: { conductorCount } as Record<string, number>,
     outputs: {
       maxFillPercentage: fillPercentage + '%',
       recommendedSize: sizeOptions[Math.min(Math.floor(conductorCount / 3), sizeOptions.length - 1)],

@@ -157,7 +157,7 @@ export function calculateLowVoltagePower(
   const recommendedPSU = Math.ceil(totalLoad * 1.25) // 25% overhead
 
   return {
-    inputs: { voltage, totalLoad, cableLength, wireGauge },
+    inputs: { voltage, totalLoad, cableLength } as Record<string, number>,
     outputs: {
       current: `${current.toFixed(2)}A`,
       voltageDrop: `${voltageDrop.toFixed(2)}V`,
