@@ -1,0 +1,83 @@
+⚡ THE ELECTRICIAN'S SPELLBOOK ⚡
+================================
+
+Welcome to your mystical electrical companion!
+
+🚀 QUICK START:
+--------------
+
+1. Install Dependencies:
+   - Double-click "install.bat"
+   - OR run: npm install
+
+2. Start the App:
+   - Double-click "run.bat"
+   - OR run: npm run dev
+
+3. Open your browser to: http://localhost:5173
+
+
+📚 FEATURES AT A GLANCE:
+-----------------------
+
+🔮 THE GRIMOIRE - Manage electrical projects (quests)
+   Create jobs, track status, add notes and materials
+
+⚡ SPELL CALCULATOR - 6 electrical calculators
+   Ohm's Law, Wire Sizing, Voltage Drop, and more!
+
+🏺 THE VAULT - Material inventory tracking
+   Track supplies, get low stock alerts, generate shopping lists
+
+📜 SCROLL OF CODES - NEC reference guide
+   Quick access to National Electrical Code sections
+
+⏰ TIME TURNER - Time tracking & billing
+   Track hours per project, calculate earnings
+
+🗺️ MAP OF MISCHIEF - Job location manager
+   Save sites, get directions, manage contacts
+
+
+🎨 THEME:
+--------
+Dark, mystical Harry Potter aesthetic with:
+- Deep purple & gold colors
+- Magical animations & effects
+- Parchment-style cards
+- Lightning bolt accents (perfect for electrical!)
+
+
+💡 TIPS:
+-------
+- Data is saved automatically in your browser
+- All features work offline
+- Mobile-friendly for job site use
+- Click hourly rate in Time Turner to edit
+- Bookmark frequently used NEC codes
+
+
+📖 MORE INFO:
+------------
+- See README.md for full documentation
+- All code is commented for easy customization
+- Check package.json for available scripts
+
+
+🔧 TROUBLESHOOTING:
+------------------
+If "npm" is not recognized:
+1. Install Node.js from nodejs.org
+2. Restart your terminal/command prompt
+3. Run install.bat again
+
+If port 5173 is in use:
+- The app will automatically use a different port
+- Check the terminal output for the correct URL
+
+
+✨ ENJOY YOUR MAGICAL ELECTRICAL JOURNEY! ✨
+
+"It matters not what someone is born, but what they grow to be."
+- Albus Dumbledore
+

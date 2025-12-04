@@ -1,0 +1,85 @@
+⚡ QUICK GIT SETUP - The Electrician's Spellbook ⚡
+==================================================
+
+🎯 FASTEST WAY TO GET ON GITHUB:
+
+Step 1: Open PowerShell in this folder
+   Right-click in folder → "Open in Terminal" or "Open PowerShell window here"
+
+Step 2: Run these commands ONE AT A TIME:
+
+   # Configure Git (first time only)
+   git config --global user.name "Your Name"
+   git config --global user.email "your@email.com"
+
+   # Initialize and commit
+   git init
+   git add .
+   git commit -m "Initial commit - Electrician's Spellbook"
+
+   # Create repo on GitHub at: https://github.com/new
+   # Name it: electricians-spellbook
+
+   # Connect and push (replace YOUR-USERNAME)
+   git remote add origin https://github.com/YOUR-USERNAME/electricians-spellbook.git
+   git branch -M main
+   git push -u origin main
+
+Step 3: Enter your GitHub username and Personal Access Token when prompted
+
+🔑 GET YOUR PERSONAL ACCESS TOKEN:
+   1. Go to: https://github.com/settings/tokens
+   2. "Generate new token (classic)"
+   3. Name it: "Electrician's Spellbook"
+   4. Check: "repo" scope
+   5. Generate and COPY the token
+   6. Use this as your password when pushing
+
+✅ DONE! Your code is on GitHub!
+
+📖 For detailed help, see: GIT_SETUP_GUIDE.md
+
+─────────────────────────────────────────────────
+
+💡 DAILY WORKFLOW (after initial setup):
+
+   # After making changes:
+   git add .
+   git commit -m "Description of what you changed"
+   git push
+
+   # That's it! Three commands to save your work.
+
+─────────────────────────────────────────────────
+
+🆘 HAVING TROUBLE?
+
+"git: command not found"
+   → Install Git: https://git-scm.com/download/win
+
+"Permission denied"
+   → Make sure you're using a Personal Access Token, not your password
+
+"failed to push"
+   → Run: git pull --rebase
+   → Then: git push
+
+Need more help? See GIT_SETUP_GUIDE.md
+
+─────────────────────────────────────────────────
+
+✨ OR USE THE EASY MODE:
+
+1. Double-click: setup-git.bat (this initializes Git)
+2. Follow the on-screen instructions
+
+Even easier? Download GitHub Desktop:
+   https://desktop.github.com/
+
+─────────────────────────────────────────────────
+
+"It is our choices that show what we truly are, 
+far more than our abilities." - Albus Dumbledore
+
+Now choose to share your magic with the world! ⚡✨
+
