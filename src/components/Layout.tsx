@@ -2,6 +2,7 @@ import { ReactNode, useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { soundManager } from '../utils/sounds'
+import { getRandomQuote } from '../utils/quotes'
 import {
   BookOpen,
   Sparkles,
@@ -21,12 +22,22 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [soundEnabled, setSoundEnabled] = useState(true)
+  const [currentQuote, setCurrentQuote] = useState(getRandomQuote())
   const location = useLocation()
 
   // Play transition sound on route change
   useEffect(() => {
     soundManager.playTransition()
   }, [location.pathname])
+
+  // Change quote periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentQuote(getRandomQuote())
+    }, 30000) // Change quote every 30 seconds
+    
+    return () => clearInterval(interval)
+  }, [])
 
   const navigation = [
     { name: 'Home', href: '/', icon: Zap },
@@ -163,19 +174,47 @@ export default function Layout({ children }: LayoutProps) {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 mt-20 border-t border-accent-gold/20 bg-primary/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="text-center text-parchment/60 text-sm">
-            <p className="font-script">
-              "It matters not what someone is born, but what they grow to be."
+      <footer className="relative z-10 mt-20 border-t border-accent-gold/30 bg-gradient-to-b from-primary/90 to-primary-dark/95 backdrop-blur-md shadow-2xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <motion.div 
+            key={currentQuote.quote}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            {/* Decorative top border */}
+            <div className="flex items-center justify-center mb-6">
+              <div className="h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent w-full max-w-md"></div>
+            </div>
+            
+            {/* Quote */}
+            <p className="font-script text-lg text-amber-200/90 italic max-w-2xl mx-auto leading-relaxed">
+              "{currentQuote.quote}"
             </p>
-            <p className="mt-2 font-serif">
-              — Albus Dumbledore
+            
+            {/* Author */}
+            <p className="mt-3 font-serif text-accent-gold/80 text-sm tracking-wide">
+              — {currentQuote.author}
             </p>
-            <p className="mt-4 text-xs">
-              The Electrician's Spellbook © 2024
+            
+            {/* Decorative separator */}
+            <div className="flex items-center justify-center my-6">
+              <Zap className="h-4 w-4 text-accent-gold/40" />
+              <div className="h-px bg-accent-gold/20 w-12 mx-2"></div>
+              <Sparkles className="h-4 w-4 text-accent-gold/40" />
+              <div className="h-px bg-accent-gold/20 w-12 mx-2"></div>
+              <Zap className="h-4 w-4 text-accent-gold/40" />
+            </div>
+            
+            {/* Copyright */}
+            <p className="text-xs text-parchment/50 font-display tracking-wider">
+              The Electrician's Spellbook © 2025
             </p>
-          </div>
+            <p className="text-xs text-parchment/40 mt-1">
+              ⚡ Where Magic Meets Electrical Mastery ⚡
+            </p>
+          </motion.div>
         </div>
       </footer>
     </div>

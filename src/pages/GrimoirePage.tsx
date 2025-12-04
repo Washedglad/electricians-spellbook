@@ -98,8 +98,11 @@ export default function GrimoirePage() {
             <BookOpen className="mr-3 h-10 w-10" />
             The Grimoire
           </h1>
-          <p className="text-parchment/70 mt-2 font-script">
-            Your tome of active quests and completed enchantments
+          <p className="text-amber-200/80 mt-2 font-script text-lg italic">
+            "Your tome of active quests and completed enchantments"
+          </p>
+          <p className="text-parchment/60 mt-1 text-sm">
+            💫 "After all, to the well-organized mind, death is but the next great adventure." — Albus Dumbledore
           </p>
         </div>
         

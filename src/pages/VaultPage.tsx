@@ -103,8 +103,11 @@ export default function VaultPage() {
             <Package className="mr-3 h-10 w-10" />
             The Vault
           </h1>
-          <p className="text-parchment/70 mt-2 font-script">
+          <p className="text-amber-200/90 mt-2 font-script text-lg italic">
             Your mystical repository of materials and artifacts
+          </p>
+          <p className="text-parchment/60 mt-1 text-sm">
+            🗝️ "Numbing the pain for a while will make it worse when you finally feel it." — Albus Dumbledore
           </p>
         </div>
         

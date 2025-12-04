@@ -90,8 +90,11 @@ export default function HomePage() {
           Welcome, Master Electrician
         </h1>
         
-        <p className="text-xl font-script text-parchment/80 max-w-2xl mx-auto">
+        <p className="text-xl font-script text-amber-200/90 italic max-w-2xl mx-auto leading-relaxed">
           "It is our choices that show what we truly are, far more than our abilities."
+        </p>
+        <p className="text-sm text-accent-gold/70 mt-1">
+          — Albus Dumbledore
         </p>
       </div>
 
@@ -188,29 +191,38 @@ export default function HomePage() {
 
       {/* Quick Tips */}
       <Card variant="dark">
+        <div className="border-l-4 border-accent-gold/50 pl-4 mb-6">
+          <p className="text-lg font-script text-amber-200/90 italic">
+            "Words are, in my not-so-humble opinion, our most inexhaustible source of magic."
+          </p>
+          <p className="text-sm text-accent-gold/70 mt-2">
+            — Albus Dumbledore
+          </p>
+        </div>
+        
         <h3 className="text-xl font-display font-bold text-accent-gold mb-4">
-          ⚡ Magical Tips
+          ⚡ Magical Tips for Master Electricians
         </h3>
-        <ul className="space-y-2 text-parchment/80">
+        <ul className="space-y-3 text-parchment/90">
           <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Always verify voltage before casting electrical spells</span>
+            <Zap className="mr-3 h-5 w-5 text-accent-gold/70 flex-shrink-0 mt-0.5" />
+            <span className="leading-relaxed">Always verify voltage before casting electrical spells — safety first!</span>
           </li>
           <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Keep your grimoire updated with quest progress and notes</span>
+            <BookOpen className="mr-3 h-5 w-5 text-accent-gold/70 flex-shrink-0 mt-0.5" />
+            <span className="leading-relaxed">Keep your grimoire updated with quest progress and notes</span>
           </li>
           <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Check the Vault regularly to avoid running out of materials</span>
+            <Package className="mr-3 h-5 w-5 text-accent-gold/70 flex-shrink-0 mt-0.5" />
+            <span className="leading-relaxed">Check the Vault regularly to avoid running out of materials</span>
           </li>
           <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Use the Time Turner to track billable hours accurately</span>
+            <Clock className="mr-3 h-5 w-5 text-accent-gold/70 flex-shrink-0 mt-0.5" />
+            <span className="leading-relaxed">Use the Time Turner to track billable hours accurately</span>
           </li>
           <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Consult the Scroll of Codes when dark magic (code violations) is detected</span>
+            <ScrollText className="mr-3 h-5 w-5 text-accent-gold/70 flex-shrink-0 mt-0.5" />
+            <span className="leading-relaxed">Consult the Scroll of Codes when dark magic (code violations) is detected</span>
           </li>
         </ul>
       </Card>

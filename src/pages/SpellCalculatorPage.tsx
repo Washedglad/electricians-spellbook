@@ -70,14 +70,19 @@ export default function SpellCalculatorPage() {
       className="space-y-6"
     >
       {/* Header */}
-      <div className="text-center space-y-2">
+      <div className="text-center space-y-3">
         <h1 className="text-4xl font-display font-bold text-accent-gold flex items-center justify-center">
           <Sparkles className="mr-3 h-10 w-10 lightning-bolt" />
           Spell Calculator
         </h1>
-        <p className="text-parchment/70 font-script">
+        <p className="text-amber-200/90 font-script text-lg italic">
           Cast electrical calculations with precision and power
         </p>
+        <div className="max-w-2xl mx-auto pt-2">
+          <p className="text-parchment/70 text-sm">
+            ✨ "It is the unknown we fear when we look upon death and darkness, nothing more." — Albus Dumbledore
+          </p>
+        </div>
       </div>
 
       {/* Calculator Selection */}
