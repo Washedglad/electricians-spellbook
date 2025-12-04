@@ -43,7 +43,13 @@ export default function Button({
     }
   }
 
-  const { onClick, ...restProps } = props
+  const { 
+    onClick, 
+    onAnimationStart, 
+    onAnimationEnd, 
+    onAnimationIteration,
+    ...restProps 
+  } = props
 
   return (
     <motion.button
@@ -52,8 +58,8 @@ export default function Button({
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       disabled={disabled || loading}
       type={restProps.type || 'button'}
-      {...restProps}
       onClick={handleClick}
+      {...restProps}
     >
       {loading ? (
         <>

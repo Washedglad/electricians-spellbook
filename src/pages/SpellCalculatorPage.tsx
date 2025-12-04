@@ -18,14 +18,6 @@ import {
   calculateBoxFill,
   calculateConduitFill,
 } from '../utils/calculations'
-import {
-  calculateDataCableLength,
-  calculatePoE,
-  calculateLowVoltagePower,
-  calculateHVACWiring,
-  calculatePLCIO,
-  calculateSecurityWiring,
-} from '../utils/lowVoltageCalculations'
 import { CalculatorResult } from '../types'
 import { soundManager } from '../utils/sounds'
 import {
