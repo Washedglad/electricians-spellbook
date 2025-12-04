@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import { Quest, Material, TimeEntry, CodeReference, JobLocation } from '../types'
 
 interface AppState {
@@ -164,6 +164,7 @@ export const useStore = create<AppState>()(
     }),
     {
       name: 'electricians-spellbook-storage',
+      storage: createJSONStorage(() => localStorage),
     }
   )
 )

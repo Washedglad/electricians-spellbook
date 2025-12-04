@@ -38,8 +38,12 @@ export default function Button({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     soundManager.playClick()
-    props.onClick?.(e)
+    if (props.onClick) {
+      props.onClick(e)
+    }
   }
+
+  const { onClick, ...restProps } = props
 
   return (
     <motion.button
@@ -47,8 +51,8 @@ export default function Button({
       whileTap={{ scale: disabled || loading ? 1 : 0.95 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       disabled={disabled || loading}
-      type={props.type || 'button'}
-      {...props}
+      type={restProps.type || 'button'}
+      {...restProps}
       onClick={handleClick}
     >
       {loading ? (
