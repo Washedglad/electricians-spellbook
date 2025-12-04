@@ -48,6 +48,13 @@ export default function Button({
     onAnimationStart, 
     onAnimationEnd, 
     onAnimationIteration,
+    onDrag,
+    onDragStart,
+    onDragEnd,
+    onDragEnter,
+    onDragExit,
+    onDragLeave,
+    onDragOver,
     ...restProps 
   } = props
 
