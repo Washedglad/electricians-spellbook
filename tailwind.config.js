@@ -21,6 +21,8 @@ export default {
         },
         parchment: 'var(--color-parchment)',
         danger: '#8b0000',
+        'bg-page': 'var(--color-bg-page)',
+        'text-main': 'var(--color-text-main)',
       },
       fontFamily: {
         serif: ['Crimson Text', 'serif'],
