@@ -6,6 +6,7 @@ import {
   AlertTriangle,
   Lightbulb,
   Calculator,
+  Star,
 } from 'lucide-react'
 import Card from '../components/common/Card'
 import Button from '../components/common/Button'
@@ -28,6 +29,7 @@ import {
   PLCIOCalculator,
   SecurityWiringCalculator,
 } from './LowVoltageCalculators'
+import { useFavorites } from '../context/FavoritesContext'
 
 type CalculatorType =
   | 'ohms-law'
@@ -46,6 +48,7 @@ type CalculatorType =
 export default function SpellCalculatorPage() {
   const [activeCalculator, setActiveCalculator] = useState<CalculatorType>('ohms-law')
   const [result, setResult] = useState<CalculatorResult | null>(null)
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   const calculators = [
     { id: 'ohms-law', name: "Ohm's Law", icon: Zap, category: 'Power' },
@@ -61,6 +64,56 @@ export default function SpellCalculatorPage() {
     { id: 'plc-io', name: 'PLC I/O', icon: Calculator, category: 'Automation' },
     { id: 'security-wiring', name: 'Security Systems', icon: Lightbulb, category: 'Low Voltage' },
   ]
+
+  const renderCalculatorTiles = (
+    items: typeof calculators,
+    activeClasses: string,
+    inactiveClasses: string
+  ) => (
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      {items.map((calc) => {
+        const Icon = calc.icon
+        const isActive = activeCalculator === calc.id
+        const fav = isFavorite(calc.id)
+
+        return (
+          <div className="relative" key={calc.id}>
+            <button
+              onClick={() => {
+                setActiveCalculator(calc.id as CalculatorType)
+                setResult(null)
+                soundManager.playClick()
+              }}
+              className={`
+                p-4 rounded-lg font-display text-sm transition-all w-full text-left
+                ${isActive ? activeClasses : inactiveClasses}
+              `}
+            >
+              <Icon className="h-6 w-6 mx-auto mb-2" />
+              {calc.name}
+            </button>
+
+            <button
+              type="button"
+              aria-label={fav ? 'Remove from favorites' : 'Add to favorites'}
+              onClick={(e) => {
+                e.stopPropagation()
+                toggleFavorite(calc.id)
+                soundManager.playSpellCast()
+              }}
+              className={`absolute top-2 right-2 h-7 w-7 rounded-full flex items-center justify-center transition-colors ${
+                fav
+                  ? 'bg-accent-gold text-primary-dark shadow-lg'
+                  : 'bg-primary-dark/60 text-parchment hover:bg-primary-dark'
+              }`}
+            >
+              <Star className="h-4 w-4" />
+            </button>
+          </div>
+        )
+      })}
+    </div>
+  )
 
   return (
     <motion.div
@@ -94,91 +147,31 @@ export default function SpellCalculatorPage() {
         {/* Power Calculations */}
         <div className="mb-6">
           <h3 className="text-sm font-display font-semibold text-gray-700 mb-3">⚡ Power Circuits</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {calculators.filter(c => c.category === 'Power').map((calc) => {
-              const Icon = calc.icon
-              return (
-                <button
-                  key={calc.id}
-                  onClick={() => {
-                    setActiveCalculator(calc.id as CalculatorType)
-                    setResult(null)
-                    soundManager.playClick()
-                  }}
-                  className={`
-                    p-4 rounded-lg font-display text-sm transition-all
-                    ${activeCalculator === calc.id
-                      ? 'bg-gradient-to-br from-amber-600 to-amber-800 text-white shadow-lg scale-105'
-                      : 'bg-amber-50 text-gray-700 hover:bg-amber-100 border border-amber-200'
-                    }
-                  `}
-                >
-                  <Icon className="h-6 w-6 mx-auto mb-2" />
-                  {calc.name}
-                </button>
-              )
-            })}
-          </div>
+          {renderCalculatorTiles(
+            calculators.filter(c => c.category === 'Power'),
+            'bg-gradient-to-br from-amber-600 to-amber-800 text-white shadow-lg scale-105',
+            'bg-amber-50 text-gray-700 hover:bg-amber-100 border border-amber-200'
+          )}
         </div>
 
         {/* Low Voltage & Data */}
         <div className="mb-6">
           <h3 className="text-sm font-display font-semibold text-gray-700 mb-3">📡 Low Voltage & Data</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {calculators.filter(c => c.category === 'Low Voltage').map((calc) => {
-              const Icon = calc.icon
-              return (
-                <button
-                  key={calc.id}
-                  onClick={() => {
-                    setActiveCalculator(calc.id as CalculatorType)
-                    setResult(null)
-                    soundManager.playClick()
-                  }}
-                  className={`
-                    p-4 rounded-lg font-display text-sm transition-all
-                    ${activeCalculator === calc.id
-                      ? 'bg-gradient-to-br from-blue-600 to-blue-800 text-white shadow-lg scale-105'
-                      : 'bg-blue-50 text-gray-700 hover:bg-blue-100 border border-blue-200'
-                    }
-                  `}
-                >
-                  <Icon className="h-6 w-6 mx-auto mb-2" />
-                  {calc.name}
-                </button>
-              )
-            })}
-          </div>
+          {renderCalculatorTiles(
+            calculators.filter(c => c.category === 'Low Voltage'),
+            'bg-gradient-to-br from-blue-600 to-blue-800 text-white shadow-lg scale-105',
+            'bg-blue-50 text-gray-700 hover:bg-blue-100 border border-blue-200'
+          )}
         </div>
 
         {/* Controls & Automation */}
         <div>
           <h3 className="text-sm font-display font-semibold text-gray-700 mb-3">🤖 Controls & Automation</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {calculators.filter(c => c.category === 'Controls' || c.category === 'Automation').map((calc) => {
-              const Icon = calc.icon
-              return (
-                <button
-                  key={calc.id}
-                  onClick={() => {
-                    setActiveCalculator(calc.id as CalculatorType)
-                    setResult(null)
-                    soundManager.playClick()
-                  }}
-                  className={`
-                    p-4 rounded-lg font-display text-sm transition-all
-                    ${activeCalculator === calc.id
-                      ? 'bg-gradient-to-br from-purple-600 to-purple-800 text-white shadow-lg scale-105'
-                      : 'bg-purple-50 text-gray-700 hover:bg-purple-100 border border-purple-200'
-                    }
-                  `}
-                >
-                  <Icon className="h-6 w-6 mx-auto mb-2" />
-                  {calc.name}
-                </button>
-              )
-            })}
-          </div>
+          {renderCalculatorTiles(
+            calculators.filter(c => c.category === 'Controls' || c.category === 'Automation'),
+            'bg-gradient-to-br from-purple-600 to-purple-800 text-white shadow-lg scale-105',
+            'bg-purple-50 text-gray-700 hover:bg-purple-100 border border-purple-200'
+          )}
         </div>
       </Card>
 
