@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { soundManager } from '../utils/sounds'
 import { getRandomQuote } from '../utils/quotes'
+import ThemeToggle from './ThemeToggle'
+import GlobalSearch from './GlobalSearch'
 import {
   BookOpen,
   Sparkles,
@@ -13,6 +15,7 @@ import {
   Menu,
   X,
   Zap,
+  Search,
 } from 'lucide-react'
 
 interface LayoutProps {
@@ -23,6 +26,7 @@ export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [currentQuote, setCurrentQuote] = useState(getRandomQuote())
+  const [searchOpen, setSearchOpen] = useState(false)
   const location = useLocation()
 
   // Play transition sound on route change
@@ -49,8 +53,24 @@ export default function Layout({ children }: LayoutProps) {
     { name: 'Map', href: '/map', icon: Map },
   ]
 
+  // Global search keyboard shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault()
+        setSearchOpen(true)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   return (
     <div className="min-h-screen">
+      {/* Global Search Modal */}
+      <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+
       {/* Floating magical orbs background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-accent-gold/10 rounded-full blur-3xl floating-orb" />
@@ -109,17 +129,35 @@ export default function Layout({ children }: LayoutProps) {
               })}
             </nav>
 
-            {/* Sound toggle */}
-            <button
-              onClick={() => {
-                const enabled = soundManager.toggle()
-                setSoundEnabled(enabled)
-              }}
-              className="hidden md:block p-2 rounded-lg text-parchment hover:bg-primary-dark/50 transition-colors"
-              title={soundEnabled ? 'Disable sounds' : 'Enable sounds'}
-            >
-              <span className="text-xl">{soundEnabled ? '🔊' : '🔇'}</span>
-            </button>
+            {/* Right side actions */}
+            <div className="hidden md:flex items-center gap-2">
+              {/* Search button */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="p-2 rounded-lg text-parchment hover:bg-primary-dark/50 transition-colors group relative"
+                title="Search (Ctrl+K)"
+              >
+                <Search className="h-5 w-5" />
+                <span className="absolute -bottom-8 right-0 px-2 py-1 bg-primary-dark rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  Ctrl+K
+                </span>
+              </button>
+
+              {/* Theme toggle */}
+              <ThemeToggle />
+
+              {/* Sound toggle */}
+              <button
+                onClick={() => {
+                  const enabled = soundManager.toggle()
+                  setSoundEnabled(enabled)
+                }}
+                className="p-2 rounded-lg text-parchment hover:bg-primary-dark/50 transition-colors"
+                title={soundEnabled ? 'Disable sounds' : 'Enable sounds'}
+              >
+                <span className="text-xl">{soundEnabled ? '🔊' : '🔇'}</span>
+              </button>
+            </div>
 
             {/* Mobile menu button */}
             <button
