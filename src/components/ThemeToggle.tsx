@@ -4,7 +4,7 @@ import { useTheme } from '../context/ThemeContext'
 import { soundManager } from '../utils/sounds'
 
 export default function ThemeToggle() {
-  const { theme, toggleTheme, isDark } = useTheme()
+  const { toggleTheme, isDark } = useTheme()
 
   const handleToggle = () => {
     soundManager.playSpellCast()
