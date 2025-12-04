@@ -3,16 +3,59 @@
 @tailwind utilities;
 
 @layer base {
+  /* Dark Theme (Nox) - Default */
+  :root,
+  .theme-dark {
+    --color-primary: #2D1B4E;
+    --color-primary-dark: #1a1a2e;
+    --color-secondary-green: #0f4c3a;
+    --color-secondary-burgundy: #5c1a1a;
+    --color-accent-gold: #d4af37;
+    --color-parchment: #f4f1de;
+    --color-bg-page: #1a1a2e;
+    --color-text-main: #f4f1de;
+    --color-bg-card: rgba(45, 27, 78, 0.6);
+    --color-border: rgba(212, 175, 55, 0.2);
+  }
+
+  /* Light Theme (Lumos) */
+  .theme-light {
+    --color-primary: #8b7355;
+    --color-primary-dark: #6b5943;
+    --color-secondary-green: #5a7c6c;
+    --color-secondary-burgundy: #8b5a5a;
+    --color-accent-gold: #8b6914;
+    --color-parchment: #2D1B4E;
+    --color-bg-page: #f4f1de;
+    --color-text-main: #2D1B4E;
+    --color-bg-card: rgba(232, 220, 196, 0.9);
+    --color-border: rgba(139, 105, 20, 0.3);
+  }
+
   * {
     @apply border-accent-gold/20;
   }
   
   body {
-    @apply bg-primary-dark text-parchment font-serif;
+    background-color: var(--color-bg-page);
+    color: var(--color-text-main);
+    @apply font-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+  }
+
+  /* Dark theme background gradient */
+  .theme-dark body {
     background-image: 
       radial-gradient(ellipse at top, rgba(45, 27, 78, 0.8) 0%, transparent 50%),
       radial-gradient(ellipse at bottom, rgba(26, 26, 46, 0.9) 0%, transparent 50%);
-    min-height: 100vh;
+  }
+
+  /* Light theme background texture */
+  .theme-light body {
+    background-image: 
+      linear-gradient(to bottom, rgba(244, 241, 222, 0.5), rgba(232, 220, 196, 0.5)),
+      url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03' /%3E%3C/svg%3E");
   }
 
   ::-webkit-scrollbar {
@@ -43,9 +86,16 @@
   }
 
   .dark-card {
-    @apply bg-gradient-to-br from-primary via-primary-dark to-primary-dark
-           rounded-lg shadow-magical border border-accent-gold/20 p-6
-           backdrop-blur-sm relative overflow-hidden;
+    background: var(--color-bg-card);
+    @apply rounded-lg shadow-magical p-6 backdrop-blur-sm relative overflow-hidden;
+    border: 1px solid var(--color-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .theme-light .dark-card {
+    background: rgba(255, 251, 245, 0.95);
+    border: 2px solid rgba(139, 105, 20, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .magical-button {

@@ -8,18 +8,18 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#2D1B4E',
-          dark: '#1a1a2e',
+          DEFAULT: 'var(--color-primary)',
+          dark: 'var(--color-primary-dark)',
         },
         secondary: {
-          green: '#0f4c3a',
-          burgundy: '#5c1a1a',
+          green: 'var(--color-secondary-green)',
+          burgundy: 'var(--color-secondary-burgundy)',
         },
         accent: {
-          gold: '#d4af37',
+          gold: 'var(--color-accent-gold)',
           silver: '#c0c0c0',
         },
-        parchment: '#f4f1de',
+        parchment: 'var(--color-parchment)',
         danger: '#8b0000',
       },
       fontFamily: {
