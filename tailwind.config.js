@@ -8,21 +8,19 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
-          dark: 'rgb(var(--color-primary-dark) / <alpha-value>)',
+          DEFAULT: '#2D1B4E',
+          dark: '#1a1a2e',
         },
         secondary: {
-          green: 'rgb(var(--color-secondary-green) / <alpha-value>)',
-          burgundy: 'rgb(var(--color-secondary-burgundy) / <alpha-value>)',
+          green: '#0f4c3a',
+          burgundy: '#5c1a1a',
         },
         accent: {
-          gold: 'rgb(var(--color-accent-gold) / <alpha-value>)',
+          gold: '#d4af37',
           silver: '#c0c0c0',
         },
-        parchment: 'rgb(var(--color-parchment) / <alpha-value>)',
+        parchment: '#f4f1de',
         danger: '#8b0000',
-        'bg-page': 'rgb(var(--color-bg-page) / <alpha-value>)',
-        'text-main': 'rgb(var(--color-text-main) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['Crimson Text', 'serif'],

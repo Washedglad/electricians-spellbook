@@ -3,63 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  /* Dark Theme (Nox) - Default */
-  :root,
-  .theme-dark {
-    --color-primary: 45 27 78;
-    --color-primary-dark: 26 26 46;
-    --color-secondary-green: 15 76 58;
-    --color-secondary-burgundy: 92 26 26;
-    --color-accent-gold: 212 175 55;
-    --color-parchment: 244 241 222;
-    --color-bg-page: 26 26 46;
-    --color-text-main: 244 241 222;
-    --color-card: 45 27 78;
-    --card-opacity: 0.6;
-    --color-border: 212 175 55;
-    --border-opacity: 0.2;
-  }
-
-  /* Light Theme (Lumos) */
-  .theme-light {
-    --color-primary: 139 115 85;
-    --color-primary-dark: 107 89 67;
-    --color-secondary-green: 90 124 108;
-    --color-secondary-burgundy: 139 90 90;
-    --color-accent-gold: 139 105 20;
-    --color-parchment: 45 27 78;
-    --color-bg-page: 244 241 222;
-    --color-text-main: 45 27 78;
-    --color-card: 232 220 196;
-    --card-opacity: 0.95;
-    --color-border: 139 105 20;
-    --border-opacity: 0.3;
-  }
-
   * {
-    border-color: rgb(var(--color-border) / var(--border-opacity));
+    @apply border-accent-gold/20;
   }
   
   body {
-    background-color: rgb(var(--color-bg-page));
-    color: rgb(var(--color-text-main));
-    @apply font-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    min-height: 100vh;
-  }
-
-  /* Dark theme background gradient */
-  .theme-dark body {
+    @apply bg-primary-dark text-parchment font-serif;
     background-image: 
       radial-gradient(ellipse at top, rgba(45, 27, 78, 0.8) 0%, transparent 50%),
       radial-gradient(ellipse at bottom, rgba(26, 26, 46, 0.9) 0%, transparent 50%);
-  }
-
-  /* Light theme background texture */
-  .theme-light body {
-    background-image: 
-      linear-gradient(to bottom, rgba(244, 241, 222, 0.5), rgba(232, 220, 196, 0.5)),
-      url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03' /%3E%3C/svg%3E");
+    min-height: 100vh;
   }
 
   ::-webkit-scrollbar {
@@ -67,16 +20,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    background-color: rgb(var(--color-primary-dark));
+    @apply bg-primary-dark;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(212, 175, 55, 0.3);
-    border-radius: 9999px;
+    @apply bg-accent-gold/30 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(212, 175, 55, 0.5);
+    @apply bg-accent-gold/50;
   }
 }
 
@@ -91,16 +43,9 @@
   }
 
   .dark-card {
-    background-color: rgb(var(--color-card) / var(--card-opacity));
-    @apply rounded-lg shadow-magical p-6 backdrop-blur-sm relative overflow-hidden;
-    border: 1px solid rgb(var(--color-border) / var(--border-opacity));
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-
-  .theme-light .dark-card {
-    background-color: rgb(var(--color-card) / var(--card-opacity));
-    border: 2px solid rgb(var(--color-border) / var(--border-opacity));
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    @apply bg-gradient-to-br from-primary via-primary-dark to-primary-dark
+           rounded-lg shadow-magical border border-accent-gold/20 p-6
+           backdrop-blur-sm relative overflow-hidden;
   }
 
   .magical-button {
@@ -126,8 +71,7 @@
   }
 
   .quote-author {
-    color: rgba(212, 175, 55, 0.8);
-    letter-spacing: 0.025em;
+    @apply text-accent-gold/80 tracking-wide;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   }
 
